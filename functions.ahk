@@ -1,15 +1,25 @@
-state := GetKeyState("CapsLock")  	;Gets initial state of CapsLock
-
-if !state{							;Set CapsLock Off
-	SetCapsLockState, Off
-	state:=0
-}
-
 ToggleCapsLock(){					;Toggle On/Off CapsLock
-	global state
-	if state
+	global CapsLockStateasd
+
+	if CapsLockState
 		SetCapsLockState, Off
 	Else
 		SetCapsLockState, On
-	state:= !state
+	SetCapsLockState:= !CapsLockState
+}
+
+ToggleAudioOutput()
+{
+	IniRead, defaultOutput, config.ini, outputs, default
+	IniRead, headset, config.ini, outputs, headset
+	IniRead, creative, config.ini, outputs, creative
+
+	if defaultOutput = %headset% 
+		defaultOutput = %creative%
+	else if defaultOutput = %creative%
+		defaultOutput = %headset%
+	TrayTip, Salida de audio, %defaultOutput%,1,32
+
+	IniWrite, %defaultOutput%, config.ini, outputs, default
+	run %A_WinDir%\nircmd.exe setdefaultsounddevice "%defaultOutput%"
 }
