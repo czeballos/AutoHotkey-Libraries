@@ -1,15 +1,4 @@
-ToggleCapsLock(){					;Toggle On/Off CapsLock
-	global CapsLockStateasd
-
-	if CapsLockState
-		SetCapsLockState, Off
-	Else
-		SetCapsLockState, On
-	SetCapsLockState:= !CapsLockState
-}
-
-ToggleAudioOutput()
-{
+ToggleAudioOutput(){
 	IniRead, defaultOutput, config.ini, outputs, default
 	IniRead, headset, config.ini, outputs, headset
 	IniRead, creative, config.ini, outputs, creative
@@ -22,4 +11,9 @@ ToggleAudioOutput()
 
 	IniWrite, %defaultOutput%, config.ini, outputs, default
 	run %A_WinDir%\nircmd.exe setdefaultsounddevice "%defaultOutput%"
+}
+
+Exit() {
+    MsgBox, You clicked the Exit entry! The script will close itself now.
+    ExitApp
 }

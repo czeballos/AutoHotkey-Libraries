@@ -1,1 +1,0 @@
-CapsLockState := GetKeyState("CapsLock")  	;Gets iitial state of CapsLock
