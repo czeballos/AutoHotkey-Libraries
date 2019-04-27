@@ -12,8 +12,3 @@ ToggleAudioOutput(){
 	IniWrite, %defaultOutput%, config.ini, outputs, default
 	run %A_WinDir%\nircmd.exe setdefaultsounddevice "%defaultOutput%"
 }
-
-Exit() {
-    MsgBox, You clicked the Exit entry! The script will close itself now.
-    ExitApp
-}
